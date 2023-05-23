@@ -1,0 +1,248 @@
+{
+  "users": [
+    {
+      "name": "demo",
+      "email": "demo@demo",
+      "password": "demo",
+      "id": "1"
+    },
+    {
+      "name": "Ivan",
+      "email": "test@test",
+      "password": "testtest",
+      "id": "22vepaowlhrqumz9"
+    },
+    {
+      "name": "Pety",
+      "email": "Test@240",
+      "password": "petypety",
+      "id": "22vep9eglhrqw2n9"
+    },
+    {
+      "name": "xxx",
+      "email": "xxx@xxx.com",
+      "password": "xxxxxx",
+      "id": "22vepdewlhuj5yh5"
+    },
+    {
+      "name": "ppp",
+      "email": "ppp@ppp.com",
+      "password": "pppppp",
+      "id": "22vep8pkli08y8cy"
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Банк",
+      "user_id": "1",
+      "id": "1"
+    },
+    {
+      "name": "Магазин",
+      "user_id": "1",
+      "id": "2"
+    },
+    {
+      "name": "Бизнес",
+      "user_id": "1",
+      "id": "3"
+    },
+    {
+      "name": "12",
+      "user_id": "22vepdewlhuj5yh5",
+      "id": "22vepa74lhuow1hp"
+    },
+    {
+      "name": "Накопительный",
+      "user_id": "22vepdewlhuj5yh5",
+      "id": "22vep7fklhupdtxz"
+    },
+    {
+      "name": "1",
+      "user_id": "22vep8pkli08y8cy",
+      "id": "22vepcgcli08yoy8"
+    }
+  ],
+  "transactions": [
+    {
+      "account_id": "1",
+      "created_at": "2019-09-15 10:24:02",
+      "id": "1",
+      "name": "Кредит",
+      "sum": 5000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "1",
+      "created_at": "2019-09-17 15:53:02",
+      "id": "2",
+      "name": "Баланс на дебетовке",
+      "sum": 3200,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "1",
+      "created_at": "2019-09-19 20:12:02",
+      "id": "3",
+      "name": "Копилка",
+      "sum": 1500,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "2",
+      "created_at": "2019-09-26 16:23:02",
+      "id": "4",
+      "name": "Молочные продукты",
+      "sum": 100,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "2",
+      "created_at": "2019-09-25 15:03:02",
+      "id": "5",
+      "name": "Фрукты",
+      "sum": 250,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "2",
+      "created_at": "2019-09-25 15:03:02",
+      "id": "17",
+      "name": "Овощи",
+      "sum": 300,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "2",
+      "created_at": "2019-09-26 14:47:02",
+      "id": "6",
+      "name": "Мясо",
+      "sum": 600,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "2",
+      "created_at": "2019-09-27 13:27:02",
+      "id": "7",
+      "name": "Долг в банк",
+      "sum": 5000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2017-10-15 13:27:02",
+      "id": "9",
+      "name": "На банду",
+      "sum": 15000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2017-09-17 13:27:02",
+      "id": "10",
+      "name": "На стволы",
+      "sum": 6000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2017-12-27 13:27:02",
+      "id": "11",
+      "name": "Прибыль с банка",
+      "sum": 1500000,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2018-01-15 13:27:02",
+      "id": "12",
+      "name": "Прибыль с магазина",
+      "sum": 300000,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2018-01-15 13:27:02",
+      "id": "13",
+      "name": "Подарок сизого",
+      "sum": 20000,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2017-09-15 13:27:02",
+      "id": "14",
+      "name": "На охрану",
+      "sum": 60000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2017-10-15 13:27:02",
+      "id": "15",
+      "name": "На бумер",
+      "sum": 300000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "id": "22vep314li08u1yb",
+      "type": "income",
+      "name": "Накопительный",
+      "sum": 20000,
+      "account_id": "22vepa74lhuow1hp",
+      "user_id": "22vepdewlhuj5yh5",
+      "created_at": "2023-05-23T12:19:27.202Z"
+    },
+    {
+      "id": "22vepei8li08ui93",
+      "type": "expense",
+      "name": "Накопительный",
+      "sum": 5000,
+      "account_id": "22vepa74lhuow1hp",
+      "user_id": "22vepdewlhuj5yh5",
+      "created_at": "2023-05-23T12:19:48.326Z"
+    },
+    {
+      "id": "22vep9a0li08v9j3",
+      "type": "expense",
+      "name": "Накопительный",
+      "sum": 7000,
+      "account_id": "22vepa74lhuow1hp",
+      "user_id": "22vepdewlhuj5yh5",
+      "created_at": "2023-05-23T12:20:23.678Z"
+    },
+    {
+      "id": "22vepbwoli08z366",
+      "type": "income",
+      "name": "зп",
+      "sum": 20000,
+      "account_id": "22vepcgcli08yoy8",
+      "user_id": "22vep8pkli08y8cy",
+      "created_at": "2023-05-23T12:23:22.061Z"
+    },
+    {
+      "id": "22vep7p0li08zpqo",
+      "type": "expense",
+      "name": "ntkta",
+      "sum": 5000,
+      "account_id": "22vepcgcli08yoy8",
+      "user_id": "22vep8pkli08y8cy",
+      "created_at": "2023-05-23T12:23:51.311Z"
+    }
+  ]
+}
