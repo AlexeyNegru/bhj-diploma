@@ -88,13 +88,13 @@ class AccountsWidget {
     onSelectAccount( element ) {
 
         // ищем активный счёт и удаляем у него .active
-        const activeAccount = document.querySelector('.active'); // обращаю внимание на точку
+        const activeAccount = document.getElementsByClassName('active'); // обращаю внимание на точку
         if (activeAccount) {
-            activeAccount.classList.remove('.active');
+            activeAccount.classList.remove('active');
         }
 
         // добавляем класс .active на кликнутый элемент
-        element.classList.add('.active');
+        element.classList.add('active');
 
         App.showPage( 'transactions', { account_id: element.dataset.id } );
     }

@@ -13,12 +13,11 @@ class AsyncForm {
     * через registerEvents()
     * */
     constructor(element) {
-        if (element) {
-            this.element = element;
-            this.registerEvents();
-        } else {
-            console.log("Ошибка! Элемент не существует.");
+        if (!element) {
+          throw new Error("Элемент не существует");
         }
+        this.element = element;
+        this.registerEvents();
     }
 
     /**
@@ -26,7 +25,7 @@ class AsyncForm {
     * вызывает метод submit()
     * */
     registerEvents() {
-        this.element.addEventListener("submit", e => {
+        this.element.addEventListener("submit", (e) => {
             e.preventDefault();
             this.submit();
         });
@@ -39,13 +38,9 @@ class AsyncForm {
     *  'название поля формы 2': 'значение поля формы 2'
     * }
     * */
-    getData() {
-        const result = {};
-        for (let i = 0; i < this.element.length; i++) {
-            result[this.element[i].name] = this.element[i].value;
-        }
-        delete result[""];
-        return result;
+    getData() {   
+      const formData = new FormData(this.element);
+      return Object.fromEntries(formData.entries())
     }
 
     onSubmit(options) {

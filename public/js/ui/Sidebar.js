@@ -21,13 +21,9 @@ class Sidebar {
         const sideBarToggle = document.querySelector(".sidebar-toggle");
         // слушаем нажатие на кнопку
         sideBarToggle.addEventListener("click", () => {
-            if (document.body.classList.contains('sidebar-open')) {
-                document.body.classList.remove('sidebar-open');
-                document.body.classList.remove('sidebar-collapse');
-            } else {
-                document.body.classList.add('sidebar-open');
-                document.body.classList.add('sidebar-collapse');
-            }
+            const elementSidebarMini = document.querySelector('.sidebar-mini');
+            elementSidebarMini.classList.toggle('sidebar-open');
+            elementSidebarMini.classList.toggle('sidebar-collapse');
         });
     }
 

@@ -7,42 +7,31 @@ const createRequest = (options = {}) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    if (options.method === 'GET') {
-        let url = ""; // формируемая строка отправки запроса
-
-        if (options.data) {
-            Object.keys(options.data).forEach(key => { // перебираем объект по ключам
-                url += `${key}=${options.data[key]}&`;
-            });
-        }
-
-        try {
-            xhr.open( 'GET', `${options.url}?${url}` );
-            xhr.send();
-        } catch (e) {
-            console.log(e);
-        }
-
-    } else {
-        const formData = new FormData();
-
-        if (options.data) {
-            Object.keys(options.data).forEach(key => { // перебираем объект по ключам
-                formData.append( key, options.data[key] );
-            });
-        }
-
-        try {
-            xhr.open( options.method, options.url );
-            xhr.send( formData );
-        } catch (e) {
-            console.log(e);
-        }
+    const url = options.url;
+    const method = options.method;
+    const data = options.data;
+    const callback = options.callback;
+  
+    let curUrl = url;
+    let err = undefined;
+    
+    try {
+        if (method === 'GET') {
+            let extUrl = '';
+            for (key in data) {
+                extUrl += (extUrl.length === 0 ? '' : '&') + key + '=' + data[key];
+            }        
+            curUrl = curUrl + '?' + extUrl;                   
+        }   
+        xhr.open(method, curUrl);
+        xhr.send(data);
+    } catch (err) {
+        callback(err);
     }
-
-    xhr.onload = () => {
-        if (options.callback !== undefined) {
-            options.callback(xhr.response.error, xhr.response);
-        }
-    }
+ 
+    xhr.addEventListener('load', () => {                              
+        if (callback) {
+            callback(err, xhr.response);
+        }        
+    });
 };

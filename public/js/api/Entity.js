@@ -10,22 +10,13 @@ class Entity {
     * (в зависимости от того, что наследуется от Entity)
     * */
     static list(data, callback) {
-        createRequest({
+        const options = {
             url: this.URL,
-            data,
             method: 'GET',
-            callback: ( err, response ) => {
-                /*
-                при успешном выполнении err = null, response содержит данные ответа
-                */
-
-                if (response && response.success === true) {
-                    callback(err, response);
-                } else {
-                    console.log( err );
-                }
-            }
-        });
+            data: data,
+            callback: callback 
+            };
+        createRequest(options);
     }
 
     /**
@@ -34,22 +25,13 @@ class Entity {
     * что наследуется от Entity)
     * */
     static create(data, callback) {
-        createRequest({
+        const options = {
             url: this.URL,
-            data,
             method: 'PUT',
-            callback: ( err, response ) => {
-                /*
-                при успешном выполнении err = null, response содержит данные ответа
-                */
-
-                if (response && response.success === true) {
-                    callback(err, response);
-                } else {
-                    console.log( err );
-                }
-            }
-        });
+            data: data,
+            callback: callback        
+          };
+        createRequest(options);
     }
 
     /**
@@ -57,21 +39,12 @@ class Entity {
     * (в зависимости от того, что наследуется от Entity)
     * */
     static remove(data, callback ) {
-        createRequest({
+        const options = {
             url: this.URL,
-            data,
             method: 'DELETE',
-            callback: ( err, response ) => {
-                /*
-                при успешном выполнении err = null, response содержит данные ответа
-                */
-
-                if (response && response.success === true) {
-                    callback(err, response);
-                } else {
-                    console.log( err );
-                }
-            }
-        });
+            data: data,
+            callback: callback
+          };
+        createRequest(options);
     }
 }

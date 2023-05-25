@@ -11,12 +11,11 @@ class TransactionsPage {
     * через registerEvents()
     * */
     constructor( element ) {
-        if (element) {
-            this.element = element;
-            this.registerEvents();
-        } else {
-            console.log("Ошибка! Элемент не существует.");
+        if (!element) {
+            throw new Error('Переданный элемент не существует!');
         }
+        this.element = element;
+        this.registerEvents();
     }
 
     /**
@@ -33,11 +32,17 @@ class TransactionsPage {
     * TransactionsPage.removeAccount соответственно
     * */
     registerEvents() {
-        document.addEventListener("click", e => {
-            if (e.target.classList.contains("remove-account")) {
-                this.removeAccount();
-            } else if (e.target.classList.contains("transaction__remove")) {
-                this.removeTransaction( e.target.dataset.id );
+        this.element.addEventListener('click', (event) => {      
+            debugger;            
+            const curEl = event.target.closest('button');
+                  
+            if (curEl.classList.contains('transaction__remove')) {
+              const transactionId = curEl.getAttribute('data-id');
+              App.pages.transactions.removeTransaction(transactionId);        
+            } 
+      
+            if (curEl.classList.contains('remove-account')) {
+              App.pages.transactions.removeAccount();
             }
         });
     }
@@ -53,7 +58,7 @@ class TransactionsPage {
     * */
     removeAccount() {
         if (!this.lastOptions) {
-            return console.log("Условие не задано!");
+            return;
         }
 
         const decision = confirm("Вы действительно хотите удалить счёт?");
@@ -94,7 +99,7 @@ class TransactionsPage {
     * */
     render(options) {
         if (!options) {
-            return console.log("Ошибка! Информация не передана.");
+            return;
         }
 
         this.lastOptions = options;
@@ -148,14 +153,8 @@ class TransactionsPage {
     * item - объект с информацией о транзакции
     * */
     getTransactionHTML(item) {
-        let transactionType = "";
-        if (item.type === "income") {
-            transactionType = `<div class="transaction transaction_income row">`;
-        } else {
-            transactionType = `<div class="transaction transaction_expense row">`;
-        }
-        return `
-        ${transactionType}
+        const transactionType = item.type === 'income' ? 'transaction_income' : 'transaction_expense';
+        const htmlTransaction = `<div class="transaction ${transactionType} row">
             <div class="col-md-7 transaction__details">
                 <div class="transaction__icon">
                     <span class="fa fa-money fa-2x"></span>
@@ -180,6 +179,7 @@ class TransactionsPage {
             </div>
         </div>
         `;
+        return htmlTransaction;
     }
 
     /**
