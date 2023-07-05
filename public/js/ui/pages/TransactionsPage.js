@@ -32,9 +32,8 @@ class TransactionsPage {
     * TransactionsPage.removeAccount соответственно
     * */
     registerEvents() {
-        this.element.addEventListener('click', (event) => {      
-            debugger;            
-            const curEl = event.target.closest('button');
+        this.element.addEventListener('click', (event) => {                 
+            const curEl = event.target.closest('remove-account');
                   
             if (curEl.classList.contains('transaction__remove')) {
               const transactionId = curEl.getAttribute('data-id');
@@ -85,7 +84,6 @@ class TransactionsPage {
             Transaction.remove({ id }, (err, response) => {
                 if (response && response.success === true) {
                     App.update();
-                    this.update();
                 }
             });
         }

@@ -2,15 +2,13 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
+const xhr = new XMLHttpRequest();
+xhr.responseType = 'json';
+
 
 const createRequest = (options = {}) => {
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
 
-    const url = options.url;
-    const method = options.method;
-    const data = options.data;
-    const callback = options.callback;
+    let { url, method, data, callback } = options;
   
     let curUrl = url;
     let err = undefined;

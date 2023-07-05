@@ -36,7 +36,7 @@ class User {
     static fetch(callback) {
         createRequest({
             url: this.URL + '/current',
-            data: localStorage.user,
+            data: this.current(),
             method: 'GET',
             callback: (err, response) => {
                 if (response && response.success === true) {
@@ -60,10 +60,7 @@ class User {
             url: this.URL + '/login',
             method: 'POST',
             responseType: 'json',
-            data: {
-                email: data.email,
-                password: data.password
-            },
+            data,
             callback: (err, response) => {
                 if (response && response.user) {
                     this.setCurrent(response.user);
