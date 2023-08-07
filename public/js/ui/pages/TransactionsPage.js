@@ -32,17 +32,14 @@ class TransactionsPage {
     * TransactionsPage.removeAccount соответственно
     * */
     registerEvents() {
-        this.element.addEventListener('click', (event) => {                 
-            const curEl = event.target.closest('remove-account');
-                  
-            if (curEl.classList.contains('transaction__remove')) {
-              const transactionId = curEl.getAttribute('data-id');
-              App.pages.transactions.removeTransaction(transactionId);        
-            } 
-      
-            if (curEl.classList.contains('remove-account')) {
-              App.pages.transactions.removeAccount();
+        this.element.addEventListener('click', (event) => { 
+            if (event.target.closest('.remove-account')) {
+                this.removeAccount();
             }
+            let target = event.target;
+            if (target.classList.contains('transaction__remove')) {
+                this.removeTransaction(target.dataset.id);
+            }              
         });
     }
 

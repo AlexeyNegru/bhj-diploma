@@ -25,15 +25,15 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-        const closeButtons = Array.from(document.querySelectorAll('[data-dismiss="modal"]'));
-        for (let i = 0; i < closeButtons.length; i++) {
-            const parent = closeButtons[i].closest(".modal");
-            if (parent === this.element) {
-                closeButtons[i].addEventListener("click", e => {
-                    this.onClose(e);
-                });
-            }
+    const closeButtons = this.element.getElementsByTagName('button');
+    for (let button of closeButtons) {
+        if (button.hasAttribute('data-dismiss') && button.dataset.dismiss === 'modal') {
+          button.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            this.onClose(button);
+          });
         }
+      }
     }
 
   /**

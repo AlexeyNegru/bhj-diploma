@@ -2,34 +2,32 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
-const xhr = new XMLHttpRequest();
-xhr.responseType = 'json';
-
-
 const createRequest = (options = {}) => {
-
-    let { url, method, data, callback } = options;
-  
-    let curUrl = url;
-    let err = undefined;
-    
-    try {
-        if (method === 'GET') {
-            let extUrl = '';
-            for (key in data) {
-                extUrl += (extUrl.length === 0 ? '' : '&') + key + '=' + data[key];
-            }        
-            curUrl = curUrl + '?' + extUrl;                   
-        }   
-        xhr.open(method, curUrl);
-        xhr.send(data);
-    } catch (err) {
-        callback(err);
-    }
- 
-    xhr.addEventListener('load', () => {                              
-        if (callback) {
-            callback(err, xhr.response);
-        }        
-    });
-};
+	if (options) {
+		const xhr = new XMLHttpRequest;
+		let formData = new FormData();
+		let sendURL = options.url;
+		if (options.method !== 'GET') {
+			Object.entries(options.data).forEach(([key, value]) => formData.append(key, value));
+		} else {
+			formData = '';
+			if (!sendURL.includes('/account')) {
+				sendURL += '?';
+				Object.entries(options.data).forEach(([key, value]) => sendURL += `${key}=${value}&`);
+				sendURL = sendURL.slice(0, -1);
+			}
+		}
+		try {
+			xhr.open(options.method, sendURL);
+			xhr.send(formData);
+		} catch (err) {
+			options.callback(err, null);
+		}
+		xhr.responseType = 'json';
+		xhr.addEventListener('readystatechange', function () {
+			if (xhr.status === 200 && xhr.readyState === xhr.DONE) {
+				options.callback(null, xhr.response);
+			}
+		});
+	}
+}
