@@ -3,7 +3,6 @@
  * отображения счетов в боковой колонке
  * */
 
-const e = require("express");
 
 class AccountsWidget {
     /**

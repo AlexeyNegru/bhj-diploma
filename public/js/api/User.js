@@ -64,8 +64,8 @@ class User {
             callback: (err, response) => {
                 if (response && response.user) {
                     this.setCurrent(response.user);
-                    callback(err, response);
                 }
+                callback(err, response);
             }
         });
     }
@@ -84,8 +84,8 @@ class User {
             callback: (err, response) => {
                 if (response && response.success === true) {
                     this.setCurrent(response.user);
-                    callback(err, response);
                 }
+                callback(err, response);
             }
         });
     }
@@ -99,10 +99,10 @@ class User {
             url: this.URL + '/logout',
             method: 'POST',
             callback: (err, response) => {
-                if (response && response.success === true) {
-                    this.unsetCurrent();
-                    callback(err, response);
+                if (response) {
+                    this.unsetCurrent(response.user);
                 }
+                callback(err, response);
             }
         });
     }

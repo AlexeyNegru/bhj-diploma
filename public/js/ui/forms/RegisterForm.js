@@ -11,7 +11,7 @@ class RegisterForm extends AsyncForm {
     * */
     onSubmit(data) {
         User.register(data, (err, response) => {
-            if (response && response.success === true) {
+            if (response && response.success) {
                 // сбрасываем данные формы
                 this.element.reset();
                 // авторизуем пользователя

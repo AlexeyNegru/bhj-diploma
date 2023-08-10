@@ -3,31 +3,31 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-	if (options) {
-		const xhr = new XMLHttpRequest;
-		let formData = new FormData();
-		let sendURL = options.url;
-		if (options.method !== 'GET') {
-			Object.entries(options.data).forEach(([key, value]) => formData.append(key, value));
-		} else {
-			formData = '';
-			if (!sendURL.includes('/account')) {
-				sendURL += '?';
-				Object.entries(options.data).forEach(([key, value]) => sendURL += `${key}=${value}&`);
-				sendURL = sendURL.slice(0, -1);
-			}
+	
+	const xhr = new XMLHttpRequest;
+	xhr.responseType = 'json';
+	let formData = new FormData();
+	let url = options.url;
+	if (options.method !== 'GET') {
+		url += '?';
+		for (let key in options.data) {
+			url += `${key}=${options.data[key]}&`
+			url = url.slice(0, -1);
 		}
-		try {
-			xhr.open(options.method, sendURL);
-			xhr.send(formData);
-		} catch (err) {
-			options.callback(err, null);
+	} else {
+		for (let key in options.data) {
+			formData.append(key, options.data[key]);
 		}
-		xhr.responseType = 'json';
-		xhr.addEventListener('readystatechange', function () {
-			if (xhr.status === 200 && xhr.readyState === xhr.DONE) {
-				options.callback(null, xhr.response);
-			}
-		});
 	}
+			
+	try {
+		xhr.open(options.method, url);
+		xhr.send(formData);
+	} catch (err) {
+		options.callback(err);
+	}
+
+	xhr.addEventListener('load', () => {options.callback(null, xhr.response)});
+	xhr.addEventListener('error', () => {options.callback(xhr.statusText, null)});
 }
+

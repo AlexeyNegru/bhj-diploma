@@ -93,23 +93,21 @@ class TransactionsPage {
     * в TransactionsPage.renderTransactions()
     * */
     render(options) {
-        if (!options) {
-            return;
-        }
+        if (options) {
+            this.lastOptions = options;
 
-        this.lastOptions = options;
-
-        Account.get(options.account_id, (err, response) => {
-            if (response && response.success === true) {
+            Account.get(options.account_id, (err, response) => {
+                if (response && response.success) {
                 this.renderTitle(response.data.name);
-            }
-        });
+                }
+            });
 
-        Transaction.list(options, (err, response) => {
-            if (response && response.success === true) {
+            Transaction.list(options, (err, response) => {
+                if (response && response.success === true) {
                 this.renderTransactions(response.data);
-            }
-        });
+                }
+            });
+        }
     }
 
     /**
@@ -117,18 +115,17 @@ class TransactionsPage {
     * TransactionsPage.renderTransactions() с пустым массивом.
     * Устанавливает заголовок: «Название счёта»
     * */
-    clear() {
-      this.clearPage();       
+    clear() {       
       this.renderTransactions([]);
       this.renderTitle('Название счёта')
-      this.lastOptions = null;
+      this.lastOptions = '';
     }
 
     /**
     * Устанавливает заголовок в элемент .content-title
     * */
     renderTitle(name) {
-        document.querySelector('.content-title').textContent = name;
+        this.element.querySelector('.content-title').textContent = name;
     }
 
     /**
