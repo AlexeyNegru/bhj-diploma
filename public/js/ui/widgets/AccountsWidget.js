@@ -3,6 +3,8 @@
  * отображения счетов в боковой колонке
  * */
 
+const e = require("express");
+
 class AccountsWidget {
     /**
     * Устанавливает текущий элемент в свойство element
@@ -31,13 +33,15 @@ class AccountsWidget {
     * вызывает AccountsWidget.onSelectAccount()
     * */
     registerEvents() {
-        document.addEventListener("click", e => {
-            if (e.target.classList.contains("create-account")) {
-                App.getModal('createAccount').open();
-            }
-            const parent = e.target.closest(".account");
-            if (parent) {
-                this.onSelectAccount(parent);
+        document.querySelector('.create-account').addEventListener("click", (e) => {
+            e.preventDefault(); 
+            App.getModal('createAccount').open();
+        });
+        this.element.addEventListener('click', (e) => {
+            e.preventDefault();
+            const account = e.target.closest('.account');
+            if (account) {
+                this.onSelectAccount(account);
             }
         });
     }
@@ -88,7 +92,7 @@ class AccountsWidget {
     onSelectAccount( element ) {
 
         // ищем активный счёт и удаляем у него .active
-        const activeAccount = document.getElementsByClassName('active'); // обращаю внимание на точку
+        const activeAccount = this.element.querySelector('active'); // обращаю внимание на точку
         if (activeAccount) {
             activeAccount.classList.remove('active');
         }

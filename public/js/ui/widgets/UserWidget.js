@@ -12,11 +12,10 @@ class UserWidget {
     * необходимо выкинуть ошибку.
     * */
     constructor(element) {
-        if (element) {
-            this.element = element;
-        } else {
-            console.log("Ошибка! Элемент не существует.");
+        if (!element) {
+          throw new Error('Переданный элемент не существует'); 
         }
+        this.element = element;
     }
 
     /**

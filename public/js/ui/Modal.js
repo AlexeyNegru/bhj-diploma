@@ -25,23 +25,18 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    const closeButtons = this.element.getElementsByTagName('button');
-    for (let button of closeButtons) {
-        if (button.hasAttribute('data-dismiss') && button.dataset.dismiss === 'modal') {
-          button.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            this.onClose(button);
-          });
-        }
-      }
-    }
+    const modalCloseButtons = this.element.querySelectorAll('[data-dismiss="modal"]');
+
+    modalCloseButtons.forEach(element => {
+      element.addEventListener('click', (e) => this.onClose(e));
+    });
+  }
 
   /**
    * Срабатывает после нажатия на элементы, закрывающие окно.
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
-      e.preventDefault();
       this.close();
   }
   /**
